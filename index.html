@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ÚPADY is a hybrid emergency charging cable for wireless earbuds that keeps audio playing while trickle-charging from your phone." />
+  <title>ÚPADY — Hybrid Emergency Charging Cable for Wireless Earbuds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f8ff;
+      --bg-soft: #e8f1ff;
+      --panel: rgba(255, 255, 255, 0.82);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --border: rgba(109, 135, 182, 0.16);
+      --text: #0b1730;
+      --muted: rgba(11, 23, 48, 0.74);
+      --subtle: rgba(11, 23, 48, 0.56);
+      --accent: #39b6ff;
+      --accent-2: #58d0ff;
+      --accent-glow: rgba(57, 182, 255, 0.18);
+      --shadow: 0 22px 60px rgba(27, 54, 92, 0.12);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: min(1160px, calc(100% - 2rem));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(57, 182, 255, 0.18), transparent 22%),
+        radial-gradient(circle at 86% 14%, rgba(88, 208, 255, 0.16), transparent 20%),
+        radial-gradient(circle at 72% 76%, rgba(57, 182, 255, 0.08), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 48%, #eef5ff 100%);
+      color: var(--text);
+      min-height: 100vh;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(18, 40, 70, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(18, 40, 70, 0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.58), transparent 80%);
+      opacity: 0.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -100px;
+      z-index: 1000;
+      padding: 0.85rem 1rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #00111f;
+      font-weight: 700;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.78));
+      border-bottom: 1px solid rgba(109, 135, 182, 0.12);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 76px;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background:
+        linear-gradient(145deg, rgba(57, 182, 255, 0.95), rgba(124, 246, 197, 0.9));
+      box-shadow: 0 0 28px rgba(57, 182, 255, 0.2);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.72);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: rgba(11, 23, 48, 0.66);
+      font-size: 0.94rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 0 2.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 3rem;
+      align-items: center;
+      min-height: calc(100vh - 76px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.52rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(57, 182, 255, 0.24);
+      background: rgba(57, 182, 255, 0.08);
+      color: #b9e6ff;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.35rem;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 18px rgba(124, 246, 197, 0.9);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.3rem, 8vw, 6.8rem);
+      line-height: 0.94;
+      max-width: 11ch;
+      text-wrap: balance;
+    }
+
+    .hero h1 .accent {
+      color: var(--accent);
+      text-shadow: 0 0 32px rgba(57, 182, 255, 0.14);
+    }
+
+    .lead {
+      margin: 1.3rem 0 0;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .countdown {
+      margin-top: 1.35rem;
+      padding: 1rem 1.05rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(109, 135, 182, 0.14);
+      box-shadow: 0 12px 28px rgba(31, 61, 108, 0.06);
+      max-width: 620px;
+    }
+
+    .countdown-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.8rem;
+      color: #24598f;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .countdown-unit {
+      padding: 0.85rem 0.75rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(244, 249, 255, 0.98), rgba(235, 243, 255, 0.98));
+      border: 1px solid rgba(109, 135, 182, 0.12);
+      text-align: center;
+    }
+
+    .countdown-unit strong {
+      display: block;
+      font-size: clamp(1.35rem, 2.8vw, 2rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: var(--text);
+    }
+
+    .countdown-unit span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--subtle);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.95rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      min-height: 50px;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #5edbff);
+      color: #00101c;
+      box-shadow: 0 18px 34px rgba(57, 182, 255, 0.18), 0 0 0 1px rgba(57, 182, 255, 0.12) inset;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.78);
+      border-color: rgba(109, 135, 182, 0.18);
+      color: var(--text);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 2.4rem;
+    }
+
+    .metric {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(109, 135, 182, 0.14);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: #0b1730;
+    }
+
+    .metric span {
+      color: var(--subtle);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 650px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(16px);
+      opacity: 0.92;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .orb.one {
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(57,182,255,0.2), rgba(57,182,255,0));
+      top: 8%;
+      right: 6%;
+      animation-delay: -2s;
+    }
+
+    .orb.two {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(88,208,255,0.18), rgba(88,208,255,0));
+      bottom: 6%;
+      left: 8%;
+    }
+
+    .panel {
+      position: relative;
+      width: min(100%, 540px);
+      padding: 1.2rem;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(238, 245, 255, 0.96));
+      border: 1px solid rgba(109, 135, 182, 0.16);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(57, 182, 255, 0.08), transparent 42%);
+      pointer-events: none;
+    }
+
+    .panel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      position: absolute;
+      z-index: 2;
+      left: 1.1rem;
+      top: 1.1rem;
+      padding: 0.52rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(57, 182, 255, 0.14);
+      color: #12325a;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .panel-badge i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 14px rgba(124, 246, 197, 0.9);
+      display: inline-block;
+    }
+
+    .illustration {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 1 / 1.06;
+      margin-top: 2rem;
+    }
+
+    .illustration svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .section {
+      padding: 5.5rem 0;
+      position: relative;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      max-width: 14ch;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 44ch;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 246, 255, 0.96));
+      border: 1px solid rgba(109, 135, 182, 0.14);
+      box-shadow: 0 10px 30px rgba(31, 61, 108, 0.08);
+      min-height: 100%;
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      line-height: 1.2;
+      margin-bottom: 0.7rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+
+    .problem-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .problem-item {
+      padding: 1.2rem 1.25rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(109, 135, 182, 0.12);
+      display: flex;
+      gap: 0.95rem;
+      align-items: flex-start;
+    }
+
+    .problem-icon {
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(57, 182, 255, 0.12);
+      border: 1px solid rgba(57, 182, 255, 0.16);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .problem-item strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .problem-item span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .step {
+      position: relative;
+      padding: 1.3rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 246, 255, 0.96));
+      border: 1px solid rgba(109, 135, 182, 0.14);
+      overflow: hidden;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      inset: auto -20px -30px auto;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(57, 182, 255, 0.12), transparent 65%);
+      pointer-events: none;
+    }
+
+    .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, rgba(57, 182, 255, 0.2), rgba(124, 246, 197, 0.2));
+      color: #0b1730;
+      border: 1px solid rgba(57, 182, 255, 0.18);
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.12rem;
+      line-height: 1.22;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.62;
+    }
+
+    .feature-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .feature-highlights {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .feature-spot {
+      padding: 1.4rem;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(232, 243, 255, 0.96));
+      border: 1px solid rgba(57, 182, 255, 0.14);
+      box-shadow: var(--shadow);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .feature-spot strong {
+      font-size: 1.2rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .feature-spot p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 36ch;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .feature-card {
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(109, 135, 182, 0.12);
+    }
+
+    .feature-card .label {
+      display: inline-flex;
+      padding: 0.36rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(57, 182, 255, 0.08);
+      color: #24598f;
+      border: 1px solid rgba(57, 182, 255, 0.14);
+      font-size: 0.8rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.13rem;
+      line-height: 1.24;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .persona {
+      position: relative;
+      padding: 1.4rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 246, 255, 0.96));
+      border: 1px solid rgba(109, 135, 182, 0.14);
+    }
+
+    .persona::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), rgba(88, 208, 255, 0.9));
+      opacity: 0.9;
+    }
+
+    .persona h3 {
+      font-size: 1.14rem;
+      margin-bottom: 0.6rem;
+      padding-top: 0.4rem;
+    }
+
+    .persona p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .faq-item {
+      padding: 1.3rem 1.25rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(109, 135, 182, 0.12);
+    }
+
+    .faq-item h3 {
+      font-size: 1.08rem;
+      line-height: 1.25;
+      margin-bottom: 0.55rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .signup {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .signup-copy {
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(232, 243, 255, 0.96));
+      border: 1px solid rgba(57, 182, 255, 0.14);
+    }
+
+    .signup-copy h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      margin-bottom: 0.6rem;
+      line-height: 1.02;
+    }
+
+    .signup-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .form-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(109, 135, 182, 0.14);
+      box-shadow: var(--shadow);
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 0.38rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid rgba(109, 135, 182, 0.18);
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(57, 182, 255, 0.6);
+      box-shadow: 0 0 0 4px rgba(57, 182, 255, 0.16);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .helper {
+      color: var(--subtle);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .site-footer {
+      padding: 2.25rem 0 3rem;
+      border-top: 1px solid rgba(109, 135, 182, 0.12);
+      color: var(--subtle);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-12px) scale(1.02); }
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .feature-layout,
+      .signup {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 3.4rem;
+      }
+
+      .hero-grid {
+        min-height: unset;
+      }
+
+      .hero-visual {
+        min-height: 520px;
+      }
+
+      .cards-grid,
+      .steps,
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+        gap: 0.8rem;
+      }
+
+      .section {
+        padding: 4.2rem 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 15vw, 4.6rem);
+      }
+
+      .hero-metrics,
+      .cards-grid,
+      .problem-list,
+      .steps,
+      .feature-list,
+      .audience-grid,
+      .faq-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+      }
+
+      .panel {
+        padding: 1rem;
+        border-radius: 28px;
+      }
+
+      .signup-copy,
+      .form-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="ÚPADY home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ÚPADY</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#problem">Problem</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Emergency power for earbuds that refuse to quit</div>
+          <h1>My earbuds died <span class="accent">mid-call</span>. Not anymore.</h1>
+          <p class="lead">ÚPADY is a hybrid charging cable that powers wireless earbuds directly from your phone through USB-C, while Bluetooth playback continues uninterrupted and the battery drain stays under 1.5%.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#signup">Join the waitlist</a>
+            <a class="btn btn-secondary" href="#how-it-works">Learn more</a>
+          </div>
+          <div class="countdown" aria-label="Countdown to launch">
+            <div class="countdown-label">Launch countdown</div>
+            <div class="countdown-grid" id="countdown" aria-live="polite">
+              <div class="countdown-unit">
+                <strong data-unit="days">00</strong>
+                <span>days</span>
+              </div>
+              <div class="countdown-unit">
+                <strong data-unit="hours">00</strong>
+                <span>hours</span>
+              </div>
+              <div class="countdown-unit">
+                <strong data-unit="minutes">00</strong>
+                <span>minutes</span>
+              </div>
+              <div class="countdown-unit">
+                <strong data-unit="seconds">00</strong>
+                <span>seconds</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-metrics" aria-label="Key stats">
+            <div class="metric">
+              <strong>0</strong>
+              <span>audio interruption during trickle-charge</span>
+            </div>
+            <div class="metric">
+              <strong>&lt;1.5%</strong>
+              <span>estimated phone battery used</span>
+            </div>
+            <div class="metric">
+              <strong>1 move</strong>
+              <span>magnetic attach with one hand</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Product photo">
+          <span class="orb one" aria-hidden="true"></span>
+          <span class="orb two" aria-hidden="true"></span>
+          <div class="panel sketch-panel">
+            <div class="panel-badge"><i aria-hidden="true"></i> Product photo</div>
+            <div class="illustration sketch-illustration" aria-hidden="true">
+              <img src="foto.jpeg" alt="ÚPADY product photo" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="problem">
+      <div class="container">
+        <div class="section-heading">
+          <h2>The problem is not bad earbuds. It is bad timing.</h2>
+          <p>People who wear earbuds all day know the exact kind of frustration that only appears when the meeting starts, the train pulls out, or the last mile of a run begins.</p>
+        </div>
+        <div class="problem-list">
+          <article class="problem-item">
+            <div class="problem-icon" aria-hidden="true">1</div>
+            <div>
+              <strong>They die at the worst possible moment.</strong>
+              <span>A call is in progress, your playlist is moving, and suddenly the battery warning becomes the main character.</span>
+            </div>
+          </article>
+          <article class="problem-item">
+            <div class="problem-icon" aria-hidden="true">2</div>
+            <div>
+              <strong>There is no fast, graceful backup.</strong>
+              <span>Charging cases help later, not now. Swapping devices or waiting on a case is the opposite of instant relief.</span>
+            </div>
+          </article>
+          <article class="problem-item">
+            <div class="problem-icon" aria-hidden="true">3</div>
+            <div>
+              <strong>Buying a second pair is a workaround, not a solution.</strong>
+              <span>A spare set is expensive, easy to forget, and still leaves you with a dead pair exactly when you need it.</span>
+            </div>
+          </article>
+          <article class="problem-item">
+            <div class="problem-icon" aria-hidden="true">4</div>
+            <div>
+              <strong>Most charging options break the experience.</strong>
+              <span>To recharge, you usually have to stop listening, pocket the buds, and interrupt the thing you were doing.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <h2>How ÚPADY works</h2>
+          <p>A braided cable keeps it ready at all times. The magnetic cradles snap onto the earbuds and trickle-charge them while your phone keeps streaming audio.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Plug the USB-C end into your phone.</h3>
+            <p>The cable starts drawing a tiny amount of power from the phone, with a design tuned for emergency top-ups instead of heavy drain.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Let the magnetic cradles find the earbuds.</h3>
+            <p>Each branch ends in a compact magnetic dock that aligns with the bottom of the earbud stem in one smooth motion.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Trickle-charge through the contact points.</h3>
+            <p>The cradle mirrors the charging-case contacts, giving the earbuds just enough power to recover without drama.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">04</div>
+            <h3>Keep listening without interruption.</h3>
+            <p>Bluetooth playback stays active the entire time, so the music, call, or podcast keeps going while the battery climbs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Key features built for all-day wear</h2>
+          <p>ÚPADY is designed like wearable emergency infrastructure: simple, visible, always nearby, and fast enough to matter in the moment.</p>
+        </div>
+        <div class="feature-layout">
+          <article class="feature-spot">
+            <div>
+              <strong>Audio keeps playing.</strong>
+              <p>No pause, no reseating, no frantic swapping. The charging path is separate from the listening experience, so your audio stays live.</p>
+            </div>
+            <div class="helper">Designed for calls, commutes, workouts, and back-to-back listening sessions.</div>
+          </article>
+          <div class="feature-list">
+            <article class="feature-card">
+              <div class="label">Power efficiency</div>
+              <h3>Under 1.5% phone battery usage</h3>
+              <p>Built for tiny top-ups, not full recharges. That makes the system practical as a rescue tool when your earbuds run flat unexpectedly.</p>
+            </article>
+            <article class="feature-card">
+              <div class="label">Attachment</div>
+              <h3>Magnetic one-handed snap-on</h3>
+              <p>Bring the cradle close and let the magnets do the alignment. It is fast, repeatable, and usable without taking your attention away from the moment.</p>
+            </article>
+            <article class="feature-card">
+              <div class="label">Form factor</div>
+              <h3>Braided emergency cable</h3>
+              <p>Kept close at hand, the cable stays ready without getting lost in a pocket or bag. It feels more like wearable gear than a spare charger.</p>
+            </article>
+            <article class="feature-card">
+              <div class="label">Compatibility</div>
+              <h3>Built around AirPods-style stems</h3>
+              <p>The dock mirrors the charging contacts from the case, targeting the most common wireless earbud shape with stem-mounted contact geometry.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="who-it-is-for">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Who it is for</h2>
+          <p>Any person who lives in earbuds from morning to night and does not want a dead battery to own their schedule.</p>
+        </div>
+        <div class="audience-grid">
+          <article class="persona">
+            <h3>Students between classes</h3>
+            <p>Listen to lectures, podcasts, and playlists all day. ÚPADY is the kind of backup that fits in the gap between two lectures, not after them.</p>
+          </article>
+          <article class="persona">
+            <h3>Commuters and frequent travelers</h3>
+            <p>Train rides, airports, buses, and long walks are easier when your earbuds can recover before the next stop or connection.</p>
+          </article>
+          <article class="persona">
+            <h3>Athletes and runners</h3>
+            <p>For long sessions and repeat routes, a quick top-up mid-day means the soundtrack stays with you instead of cutting out early.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <h2>FAQ</h2>
+          <p>Quick answers to the questions people usually ask first.</p>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-item">
+            <h3>Does it work with all wireless earbuds?</h3>
+            <p>It is designed for AirPods-style earbuds with stem-mounted contact points. Broader compatibility would depend on how closely the earbud shape matches the contact geometry.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Will it stop the music while charging?</h3>
+            <p>No. The core idea is zero interruption: Bluetooth audio stays connected while the cable trickle-charges the earbuds through the magnetic dock.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How much battery does it use from the phone?</h3>
+            <p>The system is designed to consume under 1.5% of phone battery for an emergency charge session, so it behaves more like a rescue line than a full power bank.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Is this meant to replace the charging case?</h3>
+            <p>No. It is an emergency, in-the-moment solution for keeping earbuds alive while you keep moving, talking, or listening.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="signup">
+      <div class="container signup">
+        <div class="signup-copy">
+          <h2>Be first when ÚPADY is ready.</h2>
+          <p>Join the mailing list for launch updates, compatibility notes, and early design previews. This form is UI only for now, but it is ready for a real backend later.</p>
+        </div>
+        <div class="form-card">
+          <form>
+            <div class="form-row">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+              </div>
+            </div>
+            <div>
+              <label for="message">What would you use ÚPADY for?</label>
+              <textarea id="message" name="message" placeholder="Back-to-back calls, commuting, long runs, lectures..."></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Join the waitlist</button>
+            <p class="helper">No backend is connected. This is a polished front-end mockup that can be wired up later.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong style="color: var(--text); letter-spacing: 0.04em;">ÚPADY</strong>
+        <div>Hybrid emergency charging cable for wireless earbuds.</div>
+      </div>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="mailto:hello@upady.example">hello@upady.example</a>
+        <a href="#signup">Mailing list</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.16,
+        rootMargin: '0px 0px -6% 0px'
+      });
+
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button');
+      const originalLabel = button.textContent;
+      button.textContent = 'Added to waitlist';
+      button.disabled = true;
+      setTimeout(() => {
+        button.textContent = originalLabel;
+        button.disabled = false;
+        form.reset();
+      }, 1800);
+    });
+
+      const countdownTarget = new Date('2026-12-11T00:00:00');
+      const countdownNodes = {
+        days: document.querySelector('[data-unit="days"]'),
+        hours: document.querySelector('[data-unit="hours"]'),
+        minutes: document.querySelector('[data-unit="minutes"]'),
+        seconds: document.querySelector('[data-unit="seconds"]')
+      };
+
+      const pad = (value) => String(value).padStart(2, '0');
+
+      const updateCountdown = () => {
+        const remaining = countdownTarget.getTime() - Date.now();
+        const clamped = Math.max(0, remaining);
+        const totalSeconds = Math.floor(clamped / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        countdownNodes.days.textContent = pad(days);
+        countdownNodes.hours.textContent = pad(hours);
+        countdownNodes.minutes.textContent = pad(minutes);
+        countdownNodes.seconds.textContent = pad(seconds);
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>"}}]}

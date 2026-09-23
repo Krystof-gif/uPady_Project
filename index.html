@@ -411,6 +411,17 @@
       display: inline-block;
     }
 
+    .hero-product-logo {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: min(180px, 52%);
+      max-width: 100%;
+      height: auto;
+      margin: 2.4rem auto 0.75rem;
+      border-radius: 14px;
+    }
+
     .illustration {
       position: relative;
       z-index: 1;
@@ -900,6 +911,11 @@
         border-radius: 28px;
       }
 
+      .hero-product-logo {
+        width: min(160px, 60%);
+        margin-top: 2.2rem;
+      }
+
       .signup-copy,
       .form-card {
         padding: 1.2rem;
@@ -978,6 +994,7 @@
           <span class="orb two" aria-hidden="true"></span>
           <div class="panel sketch-panel">
             <div class="panel-badge"><i aria-hidden="true"></i> Product photo</div>
+            <img class="hero-product-logo" src="logo.jpeg" alt="ÚPADY logo" />
             <div class="illustration sketch-illustration" aria-hidden="true">
               <img src="foto.jpeg" alt="ÚPADY product photo" />
             </div>

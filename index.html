@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ÚPADY is a hybrid emergency charging cable for wireless earbuds that keeps audio playing while trickle-charging from your phone." />
-  <title>ÚPADY — Hybrid Emergency Charging Cable for Wireless Earbuds</title>
+  <meta name="description" content="úPods is a hybrid emergency charging cable for wireless earbuds that keeps audio playing while trickle-charging from your phone." />
+  <title>úPods — Hybrid Emergency Charging Cable for Wireless Earbuds</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
+  </script>
   <style>
     :root {
       --bg: #f4f8ff;
@@ -118,8 +121,8 @@
       align-items: center;
       gap: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      text-transform: none;
     }
 
     .brand-logo {
@@ -129,6 +132,20 @@
       object-fit: cover;
       background: rgba(255, 255, 255, 0.92);
       box-shadow: 0 0 28px rgba(57, 182, 255, 0.18);
+      border: 1px solid rgba(109, 135, 182, 0.14);
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #d7f4ff, #39b6ff);
+      color: #08233a;
+      font-size: 1.45rem;
+      font-weight: 700;
+      box-shadow: 0 0 28px rgba(57, 182, 255, 0.2);
       border: 1px solid rgba(109, 135, 182, 0.14);
     }
 
@@ -154,14 +171,14 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 5rem 0 2.5rem;
+      padding: 3rem 0 2rem;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
       gap: 3rem;
-      align-items: center;
+      align-items: start;
       min-height: calc(100vh - 76px);
     }
 
@@ -335,7 +352,7 @@
 
     .hero-visual {
       position: relative;
-      min-height: 650px;
+      min-height: 0;
       display: grid;
       place-items: center;
     }
@@ -415,11 +432,12 @@
       position: relative;
       z-index: 1;
       display: block;
-      width: min(180px, 52%);
-      max-width: 100%;
-      height: auto;
-      margin: 2.4rem auto 0.75rem;
-      border-radius: 14px;
+      width: fit-content;
+      margin: 2rem auto 0.25rem;
+      color: #10213a;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.06em;
     }
 
     .illustration {
@@ -432,6 +450,125 @@
     .illustration svg {
       width: 100%;
       height: auto;
+    }
+
+    .illustration {
+      aspect-ratio: auto;
+      margin-top: 0.75rem;
+    }
+
+    .upods-stage {
+      position: relative;
+      width: 100%;
+      height: clamp(300px, 27vw, 340px);
+      overflow: hidden;
+      border-radius: 24px;
+      background: radial-gradient(ellipse at 50% 42%, rgba(49, 100, 132, 0.88), rgba(25, 48, 69, 0.96) 48%, #101a28 100%);
+      border: 1px solid rgba(78, 119, 151, 0.32);
+      touch-action: pan-y;
+    }
+
+    .upods-stage::after {
+      content: "";
+      position: absolute;
+      width: 62%;
+      height: 9%;
+      left: 19%;
+      bottom: 8%;
+      border-radius: 50%;
+      background: rgba(35, 72, 115, 0.13);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    #upods-viewer,
+    #upods-fallback {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #upods-viewer {
+      opacity: 0;
+      cursor: grab;
+      touch-action: none;
+      transition: opacity 0.45s ease;
+    }
+
+    #upods-viewer.is-ready { opacity: 1; }
+    #upods-viewer:active { cursor: grabbing; }
+
+    #upods-fallback {
+      transition: opacity 0.45s ease;
+    }
+
+    #upods-fallback.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .viewer-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(57,182,255,0.22);
+      color: #173756;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(10px);
+    }
+
+    .viewer-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 0.25rem 0;
+      color: #31506d;
+      font-size: 0.78rem;
+    }
+
+    .colorways {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .colorway-buttons {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .colorway-button {
+      width: 23px;
+      height: 23px;
+      padding: 0;
+      border: 2px solid rgba(26, 49, 74, 0.18);
+      border-radius: 50%;
+      background: var(--swatch);
+      cursor: pointer;
+    }
+
+    .colorway-button[aria-pressed="true"] {
+      outline: 2px solid #1b3652;
+      outline-offset: 2px;
+    }
+
+    .reference-link {
+      display: inline-flex;
+      margin-top: 0.35rem;
+      color: #24598f;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .section {
@@ -853,7 +990,7 @@
       }
 
       .hero-visual {
-        min-height: 520px;
+        min-height: 0;
       }
 
       .cards-grid,
@@ -903,7 +1040,7 @@
       }
 
       .hero-visual {
-        min-height: 420px;
+        min-height: 0;
       }
 
       .panel {
@@ -928,9 +1065,9 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="ÚPADY home">
-        <img class="brand-logo" src="logo.jpeg" alt="ÚPADY logo" />
-        <span>ÚPADY</span>
+      <a class="brand" href="#top" aria-label="úPods home">
+        <span class="brand-mark" aria-hidden="true">ú</span>
+        <span>úPods</span>
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="#problem">Problem</a>
@@ -947,7 +1084,7 @@
         <div class="hero-copy reveal">
           <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Emergency power for earbuds that refuse to quit</div>
           <h1>My earbuds died <span class="accent">mid-call</span>. Not anymore.</h1>
-          <p class="lead">ÚPADY is a hybrid charging cable that powers wireless earbuds directly from your phone through USB-C, while Bluetooth playback continues uninterrupted and the battery drain stays under 1.5%.</p>
+          <p class="lead">úPods is a hybrid charging cable that powers wireless earbuds directly from your phone through USB-C, while Bluetooth playback continues uninterrupted and the battery drain stays under 1.5%.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#signup">Join the waitlist</a>
             <a class="btn btn-secondary" href="#how-it-works">Learn more</a>
@@ -993,10 +1130,57 @@
           <span class="orb one" aria-hidden="true"></span>
           <span class="orb two" aria-hidden="true"></span>
           <div class="panel sketch-panel">
-            <div class="panel-badge"><i aria-hidden="true"></i> Product photo</div>
-            <img class="hero-product-logo" src="logo.jpeg" alt="ÚPADY logo" />
-            <div class="illustration sketch-illustration" aria-hidden="true">
-              <img src="foto.jpeg" alt="ÚPADY product photo" />
+            <div class="panel-badge"><i aria-hidden="true"></i> 3D product concept</div>
+            <div class="hero-product-logo" aria-label="úPods">úPods</div>
+            <div class="illustration">
+              <div class="upods-stage" id="upods-stage">
+                <svg id="upods-fallback" viewBox="0 0 520 410" role="img" aria-label="Concept sketch of two stem earbuds connected by magnetic charging cables to a phone">
+                  <defs>
+                    <linearGradient id="phone" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#8298ad"/><stop offset="1" stop-color="#344b61"/></linearGradient>
+                    <linearGradient id="bud" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dce6f1"/></linearGradient>
+                    <radialGradient id="glow"><stop stop-color="#89d8ff" stop-opacity=".38"/><stop offset="1" stop-color="#89d8ff" stop-opacity="0"/></radialGradient>
+                    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+                  </defs>
+                  <ellipse cx="260" cy="215" rx="220" ry="180" fill="url(#glow)"/>
+                  <ellipse cx="260" cy="360" rx="130" ry="18" fill="#315375" opacity=".17" filter="url(#soft)"/>
+                  <path class="fallback-cable" d="M246 326 C205 290 160 272 150 226 C144 194 149 164 164 135" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
+                  <path class="fallback-cable" d="M274 326 C315 290 360 272 370 226 C376 194 371 164 356 135" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
+                  <rect x="225" y="248" width="70" height="124" rx="17" fill="url(#phone)" stroke="#526b83" stroke-width="3"/>
+                  <rect x="232" y="258" width="56" height="99" rx="11" fill="#17283b"/>
+                  <path d="M254 370h12" stroke="#94a8bb" stroke-width="3" stroke-linecap="round"/>
+                  <g transform="translate(130 116) rotate(-18)">
+                    <ellipse cx="0" cy="0" rx="39" ry="29" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
+                    <rect x="-10" y="16" width="20" height="75" rx="10" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
+                    <ellipse class="fallback-collar" cx="0" cy="88" rx="12" ry="7" fill="#e64458"/>
+                    <circle cx="-25" cy="2" r="5" fill="#7b8da0"/>
+                  </g>
+                  <g transform="translate(390 116) rotate(18)">
+                    <ellipse cx="0" cy="0" rx="39" ry="29" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
+                    <rect x="-10" y="16" width="20" height="75" rx="10" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
+                    <ellipse class="fallback-collar" cx="0" cy="88" rx="12" ry="7" fill="#e64458"/>
+                    <circle cx="25" cy="2" r="5" fill="#7b8da0"/>
+                  </g>
+                  <text x="260" y="395" text-anchor="middle" fill="#d7e8f6" font-family="system-ui,sans-serif" font-size="12">Magnetic charging · concept view</text>
+                </svg>
+                <canvas id="upods-viewer" tabindex="0" aria-label="Interactive 3D concept of úPods wireless earbuds and magnetic charging cable. Drag to rotate."></canvas>
+                <span class="viewer-badge">Drag to rotate</span>
+              </div>
+              <div class="viewer-controls">
+                <span id="upods-status" aria-live="polite">Cable colour</span>
+                <div class="colorways" aria-label="Choose a cable colour">
+                  <span>Colour</span>
+                  <div class="colorway-buttons">
+                    <button class="colorway-button" type="button" data-colorway="coral" data-color="#e64458" style="--swatch:#e64458" aria-label="Coral cable" title="Coral" aria-pressed="true"></button>
+                    <button class="colorway-button" type="button" data-colorway="yellow" data-color="#edbd47" style="--swatch:#edbd47" aria-label="Yellow cable" title="Yellow" aria-pressed="false"></button>
+                    <button class="colorway-button" type="button" data-colorway="green" data-color="#42b58a" style="--swatch:#42b58a" aria-label="Green cable" title="Green" aria-pressed="false"></button>
+                    <button class="colorway-button" type="button" data-colorway="blue" data-color="#3b91d0" style="--swatch:#3b91d0" aria-label="Blue cable" title="Blue" aria-pressed="false"></button>
+                    <button class="colorway-button" type="button" data-colorway="black" data-color="#263344" style="--swatch:#263344" aria-label="Black cable" title="Black" aria-pressed="false"></button>
+                    <button class="colorway-button" type="button" data-colorway="white" data-color="#f3f6fa" style="--swatch:#f3f6fa" aria-label="White cable" title="White" aria-pressed="false"></button>
+                  </div>
+                </div>
+              </div>
+              
+              <a class="reference-link" href="All%20types%20of%20AirPods.png" target="_blank" rel="noopener">Open the uploaded concept sheet</a>
             </div>
           </div>
         </div>
@@ -1045,7 +1229,7 @@
     <section class="section reveal" id="how-it-works">
       <div class="container">
         <div class="section-heading">
-          <h2>How ÚPADY works</h2>
+          <h2>How úPods works</h2>
           <p>A braided cable keeps it ready at all times. The magnetic cradles snap onto the earbuds and trickle-charge them while your phone keeps streaming audio.</p>
         </div>
         <div class="steps">
@@ -1077,7 +1261,7 @@
       <div class="container">
         <div class="section-heading">
           <h2>Key features built for all-day wear</h2>
-          <p>ÚPADY is designed like wearable emergency infrastructure: simple, visible, always nearby, and fast enough to matter in the moment.</p>
+          <p>úPods is designed like wearable emergency infrastructure: simple, visible, always nearby, and fast enough to matter in the moment.</p>
         </div>
         <div class="feature-layout">
           <article class="feature-spot">
@@ -1122,7 +1306,7 @@
         <div class="audience-grid">
           <article class="persona">
             <h3>Students between classes</h3>
-            <p>Listen to lectures, podcasts, and playlists all day. ÚPADY is the kind of backup that fits in the gap between two lectures, not after them.</p>
+            <p>Listen to lectures, podcasts, and playlists all day. úPods is the kind of backup that fits in the gap between two lectures, not after them.</p>
           </article>
           <article class="persona">
             <h3>Commuters and frequent travelers</h3>
@@ -1166,7 +1350,7 @@
     <section class="section reveal" id="signup">
       <div class="container signup">
         <div class="signup-copy">
-          <h2>Be first when ÚPADY is ready.</h2>
+          <h2>Be first when úPods is ready.</h2>
           <p>Join the mailing list for launch updates, compatibility notes, and early design previews. This form is UI only for now, but it is ready for a real backend later.</p>
         </div>
         <div class="form-card">
@@ -1182,7 +1366,7 @@
               </div>
             </div>
             <div>
-              <label for="message">What would you use ÚPADY for?</label>
+              <label for="message">What would you use úPods for?</label>
               <textarea id="message" name="message" placeholder="Back-to-back calls, commuting, long runs, lectures..."></textarea>
             </div>
             <button class="btn btn-primary" type="submit">Join the waitlist</button>
@@ -1196,11 +1380,11 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        <strong style="color: var(--text); letter-spacing: 0.04em;">ÚPADY</strong>
+        <strong style="color: var(--text); letter-spacing: 0.04em;">úPods</strong>
         <div>Hybrid emergency charging cable for wireless earbuds.</div>
       </div>
       <div class="footer-links" aria-label="Footer links">
-        <a href="mailto:hello@upady.example">hello@upady.example</a>
+        <a href="mailto:hello@upods.example">hello@upods.example</a>
         <a href="#signup">Mailing list</a>
       </div>
     </div>
@@ -1269,6 +1453,249 @@
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
+  </script>
+  <script type="module">
+    import * as THREE from "three";
+
+    const canvas = document.querySelector("#upods-viewer");
+    const stage = document.querySelector("#upods-stage");
+    const fallback = document.querySelector("#upods-fallback");
+    const status = document.querySelector("#upods-status");
+    const colorButtons = [...document.querySelectorAll("[data-colorway]")];
+    const accentParts = [];
+    let cableMaterial;
+
+    function selectColor(button) {
+      const color = button.dataset.color;
+      if (cableMaterial) cableMaterial.color.set(color);
+      accentParts.forEach((material) => material.color.set(color));
+      document.querySelectorAll(".fallback-cable").forEach((part) => { part.style.stroke = color; });
+      document.querySelectorAll(".fallback-collar").forEach((part) => { part.style.fill = color; });
+      colorButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      status.textContent = `${button.dataset.colorway[0].toUpperCase()}${button.dataset.colorway.slice(1)} cable selected`;
+    }
+
+    colorButtons.forEach((button) => button.addEventListener("click", () => selectColor(button)));
+
+    try {
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.35));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 40);
+      camera.position.set(0, -0.15, 6.15);
+      camera.lookAt(0, -0.25, 0);
+
+      scene.add(new THREE.HemisphereLight(0xe9f6ff, 0x7389a0, 2.2));
+      const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
+      keyLight.position.set(-3.5, 4.5, 5);
+      scene.add(keyLight);
+      const fillLight = new THREE.DirectionalLight(0x9bdcff, 1.8);
+      fillLight.position.set(4, 1, 2);
+      scene.add(fillLight);
+      const rimLight = new THREE.PointLight(0xffffff, 34, 12);
+      rimLight.position.set(0, 2.2, -2.8);
+      scene.add(rimLight);
+
+      const product = new THREE.Group();
+      product.rotation.set(-0.06, -0.28, 0);
+      scene.add(product);
+
+      const ceramic = new THREE.MeshPhysicalMaterial({ color: 0xf5f7fa, roughness: 0.2, metalness: 0.04, clearcoat: 0.8, clearcoatRoughness: 0.2 });
+      const dark = new THREE.MeshStandardMaterial({ color: 0x253444, roughness: 0.42, metalness: 0.16 });
+      const metal = new THREE.MeshStandardMaterial({ color: 0xc7d5df, roughness: 0.24, metalness: 0.76 });
+      const screenMat = new THREE.MeshStandardMaterial({ color: 0x18344a, roughness: 0.24, metalness: 0.16, emissive: 0x12425a, emissiveIntensity: 0.55 });
+      cableMaterial = new THREE.MeshStandardMaterial({ color: 0xe64458, roughness: 0.38, metalness: 0.08 });
+
+      function addEarbud(side) {
+        const earbud = new THREE.Group();
+        const shell = new THREE.Mesh(new THREE.SphereGeometry(0.32, 32, 24), ceramic);
+        shell.scale.set(1.13, 0.82, 0.88);
+        shell.position.set(0, 0.21, 0);
+        earbud.add(shell);
+
+        const stem = new THREE.Mesh(new THREE.CapsuleGeometry(0.078, 0.48, 6, 16), ceramic);
+        stem.position.set(0, -0.29, 0);
+        stem.rotation.z = side * 0.06;
+        earbud.add(stem);
+
+        const speaker = new THREE.Mesh(new THREE.SphereGeometry(0.105, 20, 16), dark);
+        speaker.scale.set(0.62, 0.82, 0.44);
+        speaker.position.set(side * 0.29, 0.19, 0.07);
+        earbud.add(speaker);
+
+        const grille = new THREE.Mesh(new THREE.CircleGeometry(0.058, 24), metal);
+        grille.position.set(side * 0.32, 0.2, 0.11);
+        grille.rotation.y = side * 0.55;
+        earbud.add(grille);
+
+        const sensor = new THREE.Mesh(new THREE.SphereGeometry(0.035, 16, 12), dark);
+        sensor.position.set(-side * 0.1, 0.34, 0.265);
+        earbud.add(sensor);
+
+        const collarMaterial = new THREE.MeshStandardMaterial({ color: 0xe64458, roughness: 0.32, metalness: 0.22 });
+        accentParts.push(collarMaterial);
+        const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.105, 0.105, 0.055, 24), collarMaterial);
+        collar.position.set(0, -0.57, 0);
+        earbud.add(collar);
+
+        const contact = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.058, 0.026, 20), metal);
+        contact.position.set(0, -0.61, 0);
+        earbud.add(contact);
+
+        earbud.position.set(side * 0.78, 0.67, 0.12);
+        earbud.rotation.z = -side * 0.13;
+        product.add(earbud);
+      }
+
+      function addCable(points) {
+        const curve = new THREE.CatmullRomCurve3(points.map(([x, y, z]) => new THREE.Vector3(x, y, z)));
+        const cable = new THREE.Mesh(new THREE.TubeGeometry(curve, 56, 0.027, 9, false), cableMaterial);
+        product.add(cable);
+      }
+
+      addCable([[0, -1.82, 0.12], [0, -1.9, 0.12], [0, -1.96, 0.12]]);
+      addCable([[-0.08, -1.96, 0.12], [-0.34, -1.75, 0.1], [-0.78, -1.22, 0.06], [-0.98, -0.82, 0.06], [-0.91, -0.35, 0.1], [-0.78, 0.08, 0.13]]);
+      addCable([[0.08, -1.96, 0.12], [0.34, -1.75, 0.1], [0.78, -1.22, 0.06], [0.98, -0.82, 0.06], [0.91, -0.35, 0.1], [0.78, 0.08, 0.13]]);
+
+      const splitter = new THREE.Mesh(new THREE.CapsuleGeometry(0.043, 0.14, 6, 16), cableMaterial);
+      splitter.rotation.z = Math.PI / 2;
+      splitter.position.set(0, -1.96, 0.12);
+      product.add(splitter);
+
+      function roundedRectangle(width, height, radius) {
+        const shape = new THREE.Shape();
+        const x = -width / 2;
+        const y = -height / 2;
+        shape.moveTo(x + radius, y);
+        shape.lineTo(x + width - radius, y);
+        shape.quadraticCurveTo(x + width, y, x + width, y + radius);
+        shape.lineTo(x + width, y + height - radius);
+        shape.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        shape.lineTo(x + radius, y + height);
+        shape.quadraticCurveTo(x, y + height, x, y + height - radius);
+        shape.lineTo(x, y + radius);
+        shape.quadraticCurveTo(x, y, x + radius, y);
+        return shape;
+      }
+
+      const phone = new THREE.Group();
+      const titanium = new THREE.MeshPhysicalMaterial({ color: 0x9aafc0, roughness: 0.24, metalness: 0.68, clearcoat: 0.72, clearcoatRoughness: 0.18 });
+      const phoneBodyGeometry = new THREE.ExtrudeGeometry(roundedRectangle(0.7, 1.16, 0.09), { depth: 0.11, bevelEnabled: true, bevelSegments: 3, bevelSize: 0.008, bevelThickness: 0.01, curveSegments: 8 });
+      phoneBodyGeometry.translate(0, 0, -0.055);
+      const phoneBody = new THREE.Mesh(phoneBodyGeometry, titanium);
+      phoneBody.position.set(0, -1.25, 0);
+      phone.add(phoneBody);
+
+      const cameraBumpGeometry = new THREE.ExtrudeGeometry(roundedRectangle(0.28, 0.29, 0.06), { depth: 0.035, bevelEnabled: true, bevelSegments: 2, bevelSize: 0.006, bevelThickness: 0.006, curveSegments: 8 });
+      cameraBumpGeometry.translate(0, 0, -0.0175);
+      const cameraBump = new THREE.Mesh(cameraBumpGeometry, new THREE.MeshStandardMaterial({ color: 0x748a9e, roughness: 0.3, metalness: 0.45 }));
+      cameraBump.position.set(-0.16, -0.85, 0.075);
+      phone.add(cameraBump);
+      const lensRim = new THREE.MeshStandardMaterial({ color: 0x465b70, roughness: 0.22, metalness: 0.7 });
+      const lensGlass = new THREE.MeshPhysicalMaterial({ color: 0x13283c, roughness: 0.12, metalness: 0.32, clearcoat: 1 });
+      function addCameraLens(x, y) {
+        const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.043, 0.018, 24), lensRim);
+        rim.rotation.x = Math.PI / 2;
+        rim.position.set(x, y, 0.121);
+        phone.add(rim);
+        const glass = new THREE.Mesh(new THREE.CylinderGeometry(0.031, 0.031, 0.02, 24), lensGlass);
+        glass.rotation.x = Math.PI / 2;
+        glass.position.set(x, y, 0.134);
+        phone.add(glass);
+      }
+      addCameraLens(-0.235, -0.77);
+      addCameraLens(-0.105, -0.77);
+      addCameraLens(-0.235, -0.9);
+      const flash = new THREE.Mesh(new THREE.SphereGeometry(0.018, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffe8b3 }));
+      flash.position.set(-0.105, -0.9, 0.12);
+      phone.add(flash);
+
+      const appleMarkShape = new THREE.Shape();
+      appleMarkShape.moveTo(-0.015, 0.11);
+      appleMarkShape.bezierCurveTo(-0.1, 0.2, -0.22, 0.13, -0.2, 0.015);
+      appleMarkShape.bezierCurveTo(-0.19, -0.11, -0.12, -0.19, -0.04, -0.15);
+      appleMarkShape.bezierCurveTo(0.01, -0.12, 0.04, -0.12, 0.09, -0.15);
+      appleMarkShape.bezierCurveTo(0.17, -0.19, 0.22, -0.09, 0.2, 0.015);
+      appleMarkShape.bezierCurveTo(0.18, 0.12, 0.1, 0.19, 0.025, 0.12);
+      appleMarkShape.bezierCurveTo(0.01, 0.11, 0, 0.1, -0.015, 0.11);
+      appleMarkShape.closePath();
+      const appleMark = new THREE.Mesh(new THREE.ShapeGeometry(appleMarkShape), new THREE.MeshBasicMaterial({ color: 0x50677d, side: THREE.DoubleSide }));
+      appleMark.position.set(0, -1.27, 0.08);
+      phone.add(appleMark);
+      const appleLeafShape = new THREE.Shape();
+      appleLeafShape.moveTo(0, 0);
+      appleLeafShape.quadraticCurveTo(0.06, 0.08, 0.12, 0.06);
+      appleLeafShape.quadraticCurveTo(0.1, 0, 0, 0);
+      const appleLeaf = new THREE.Mesh(new THREE.ShapeGeometry(appleLeafShape), new THREE.MeshBasicMaterial({ color: 0x50677d, side: THREE.DoubleSide }));
+      appleLeaf.position.set(0.015, -1.04, 0.081);
+      phone.add(appleLeaf);
+
+      const port = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.028, 0.018), dark);
+      port.position.set(0, -1.81, 0.079);
+      phone.add(port);
+      const plug = new THREE.Mesh(new THREE.BoxGeometry(0.105, 0.045, 0.08), metal);
+      plug.position.set(0, -1.84, 0.14);
+      product.add(plug);
+      product.add(phone);
+
+      addEarbud(-1);
+      addEarbud(1);
+
+      const resizeStage = () => {
+        const bounds = stage.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return;
+        camera.aspect = bounds.width / bounds.height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(bounds.width, bounds.height, false);
+      };
+      resizeStage();
+      const observer = new ResizeObserver(resizeStage);
+      observer.observe(stage);
+
+      let dragging = false;
+      let previousX = 0;
+      let previousY = 0;
+      canvas.addEventListener("pointerdown", (event) => {
+        dragging = true;
+        previousX = event.clientX;
+        previousY = event.clientY;
+        canvas.setPointerCapture(event.pointerId);
+      });
+      canvas.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        const dx = event.clientX - previousX;
+        const dy = event.clientY - previousY;
+        product.rotation.y += dx * 0.009;
+        product.rotation.x = THREE.MathUtils.clamp(product.rotation.x + dy * 0.006, -0.34, 0.34);
+        previousX = event.clientX;
+        previousY = event.clientY;
+      });
+      const finishDrag = () => { dragging = false; };
+      canvas.addEventListener("pointerup", finishDrag);
+      canvas.addEventListener("pointercancel", finishDrag);
+      canvas.addEventListener("lostpointercapture", finishDrag);
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const clock = new THREE.Clock();
+      renderer.setAnimationLoop(() => {
+        const delta = Math.min(clock.getDelta(), 0.05);
+        if (!reducedMotion && !dragging) product.rotation.y += delta * 0.13;
+        renderer.render(scene, camera);
+      });
+
+      const initialColor = colorButtons.find((button) => button.getAttribute("aria-pressed") === "true");
+      if (initialColor) selectColor(initialColor);
+      canvas.classList.add("is-ready");
+      fallback.classList.add("is-hidden");
+      status.textContent = "Drag to rotate · choose a cable colour";
+    } catch (error) {
+      console.warn("3D product view unavailable; keeping the illustrated fallback.", error);
+      status.textContent = "Illustrated concept shown · WebGL unavailable";
+    }
   </script>
 </body>
 </html>"}}]}

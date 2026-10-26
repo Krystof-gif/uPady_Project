@@ -135,18 +135,8 @@
       border: 1px solid rgba(109, 135, 182, 0.14);
     }
 
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: linear-gradient(145deg, #d7f4ff, #39b6ff);
-      color: #08233a;
-      font-size: 1.45rem;
-      font-weight: 700;
-      box-shadow: 0 0 28px rgba(57, 182, 255, 0.2);
-      border: 1px solid rgba(109, 135, 182, 0.14);
+    .brand-wordmark {
+      line-height: 1;
     }
 
     .nav {
@@ -432,12 +422,10 @@
       position: relative;
       z-index: 1;
       display: block;
-      width: fit-content;
-      margin: 2rem auto 0.25rem;
-      color: #10213a;
-      font-size: 1.55rem;
-      font-weight: 700;
-      letter-spacing: -0.06em;
+      width: min(210px, 62%);
+      margin: 2rem auto 0.55rem;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 26px rgba(24, 57, 97, 0.18));
     }
 
     .illustration {
@@ -932,6 +920,32 @@
       margin: 0;
     }
 
+    .helper.is-success {
+      color: #21693d;
+    }
+
+    .helper.is-error {
+      color: #8f2730;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .footer-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(109, 135, 182, 0.14);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
     .site-footer {
       padding: 2.25rem 0 3rem;
       border-top: 1px solid rgba(109, 135, 182, 0.12);
@@ -1066,8 +1080,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="úPods home">
-        <span class="brand-mark" aria-hidden="true">ú</span>
-        <span>úPods</span>
+        <img class="brand-logo" src="logo.jpeg" alt="" />
+        <span class="brand-wordmark">úPods</span>
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="#problem">Problem</a>
@@ -1131,28 +1145,36 @@
           <span class="orb two" aria-hidden="true"></span>
           <div class="panel sketch-panel">
             <div class="panel-badge"><i aria-hidden="true"></i> 3D product concept</div>
-            <div class="hero-product-logo" aria-label="úPods">úPods</div>
+            <img class="hero-product-logo" src="logo.jpeg" alt="úPods logo" />
             <div class="illustration">
               <div class="upods-stage" id="upods-stage">
-                <svg id="upods-fallback" viewBox="0 0 520 410" role="img" aria-label="Concept sketch of two stem earbuds connected by magnetic charging cables to a phone">
+                <svg id="upods-fallback" viewBox="0 0 520 410" role="img" aria-label="Concept sketch of a Y-shaped emergency earbud charging cable connected to a phone via USB-C">
                   <defs>
-                    <linearGradient id="phone" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#8298ad"/><stop offset="1" stop-color="#344b61"/></linearGradient>
+                    <linearGradient id="phone" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9bb0c3"/><stop offset="1" stop-color="#415a71"/></linearGradient>
                     <linearGradient id="bud" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dce6f1"/></linearGradient>
+                    <linearGradient id="module" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f6fbff"/><stop offset="1" stop-color="#cad7e5"/></linearGradient>
                     <radialGradient id="glow"><stop stop-color="#89d8ff" stop-opacity=".38"/><stop offset="1" stop-color="#89d8ff" stop-opacity="0"/></radialGradient>
                     <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
                   </defs>
                   <ellipse cx="260" cy="215" rx="220" ry="180" fill="url(#glow)"/>
                   <ellipse cx="260" cy="360" rx="130" ry="18" fill="#315375" opacity=".17" filter="url(#soft)"/>
-                  <path class="fallback-cable" d="M246 326 C205 290 160 272 150 226 C144 194 149 164 164 135" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
-                  <path class="fallback-cable" d="M274 326 C315 290 360 272 370 226 C376 194 371 164 356 135" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
-                  <rect x="225" y="248" width="70" height="124" rx="17" fill="url(#phone)" stroke="#526b83" stroke-width="3"/>
-                  <rect x="232" y="258" width="56" height="99" rx="11" fill="#17283b"/>
-                  <path d="M254 370h12" stroke="#94a8bb" stroke-width="3" stroke-linecap="round"/>
+                  <path class="fallback-cable" d="M251 247 C230 228 202 205 166 143" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
+                  <path class="fallback-cable" d="M269 247 C291 228 319 205 354 143" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
+                  <path class="fallback-cable" d="M260 297 C260 324 260 336 260 346" fill="none" stroke="#e64458" stroke-width="9" stroke-linecap="round"/>
+                  <rect x="223" y="240" width="74" height="62" rx="17" fill="url(#module)" stroke="#8fa3b6" stroke-width="3"/>
+                  <rect class="fallback-module-accent" x="241" y="260" width="38" height="18" rx="7" fill="#e64458"/>
+                  <circle class="fallback-indicator" cx="285" cy="273" r="4.2" fill="#80ffb9"/>
+                  <rect x="225" y="346" width="70" height="26" rx="8" fill="#d4e0ea" stroke="#89a0b7" stroke-width="2.5"/>
+                  <rect x="245" y="368" width="30" height="18" rx="5" fill="#f3f7fb" stroke="#90a4b8" stroke-width="2"/>
+                  <rect x="250" y="382" width="20" height="8" rx="3.6" fill="#2e4e69"/>
+                  <rect x="225" y="248" width="70" height="124" rx="17" fill="url(#phone)" stroke="#526b83" stroke-width="3" opacity="0.78"/>
+                  <rect x="232" y="258" width="56" height="99" rx="11" fill="#17283b" opacity="0.78"/>
                   <g transform="translate(130 116) rotate(-18)">
                     <ellipse cx="0" cy="0" rx="39" ry="29" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
                     <rect x="-10" y="16" width="20" height="75" rx="10" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
                     <ellipse class="fallback-collar" cx="0" cy="88" rx="12" ry="7" fill="#e64458"/>
                     <circle cx="-25" cy="2" r="5" fill="#7b8da0"/>
+                    <circle class="fallback-indicator" cx="0" cy="72" r="4" fill="#80ffb9"/>
                   </g>
                   <g transform="translate(390 116) rotate(18)">
                     <ellipse cx="0" cy="0" rx="39" ry="29" fill="url(#bud)" stroke="#b9c9d9" stroke-width="2"/>
@@ -1160,7 +1182,7 @@
                     <ellipse class="fallback-collar" cx="0" cy="88" rx="12" ry="7" fill="#e64458"/>
                     <circle cx="25" cy="2" r="5" fill="#7b8da0"/>
                   </g>
-                  <text x="260" y="395" text-anchor="middle" fill="#d7e8f6" font-family="system-ui,sans-serif" font-size="12">Magnetic charging · concept view</text>
+                  <text x="260" y="402" text-anchor="middle" fill="#d7e8f6" font-family="system-ui,sans-serif" font-size="12">Y-cable emergency charge · concept view</text>
                 </svg>
                 <canvas id="upods-viewer" tabindex="0" aria-label="Interactive 3D concept of úPods wireless earbuds and magnetic charging cable. Drag to rotate."></canvas>
                 <span class="viewer-badge">Drag to rotate</span>
@@ -1351,10 +1373,10 @@
       <div class="container signup">
         <div class="signup-copy">
           <h2>Be first when úPods is ready.</h2>
-          <p>Join the mailing list for launch updates, compatibility notes, and early design previews. This form is UI only for now, but it is ready for a real backend later.</p>
+          <p>Join the mailing list for launch updates, compatibility notes, and early design previews. This waitlist uses Google Forms so submissions can be collected without a paid backend.</p>
         </div>
         <div class="form-card">
-          <form>
+          <form id="waitlist-form">
             <div class="form-row">
               <div>
                 <label for="name">Name</label>
@@ -1370,7 +1392,7 @@
               <textarea id="message" name="message" placeholder="Back-to-back calls, commuting, long runs, lectures..."></textarea>
             </div>
             <button class="btn btn-primary" type="submit">Join the waitlist</button>
-            <p class="helper">No backend is connected. This is a polished front-end mockup that can be wired up later.</p>
+            <p class="helper" id="waitlist-status" aria-live="polite">Set the Google Form configuration in the script to enable real waitlist submissions.</p>
           </form>
         </div>
       </div>
@@ -1380,7 +1402,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        <strong style="color: var(--text); letter-spacing: 0.04em;">úPods</strong>
+        <strong class="footer-brand"><img src="logo.jpeg" alt="" /> úPods</strong>
         <div>Hybrid emergency charging cable for wireless earbuds.</div>
       </div>
       <div class="footer-links" aria-label="Footer links">
@@ -1412,18 +1434,75 @@
       revealItems.forEach((item) => observer.observe(item));
     }
 
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (event) => {
+    // Configure these Google Forms values to enable real waitlist submissions.
+    // actionUrl example:
+    // https://docs.google.com/forms/d/e/FORM_ID/formResponse
+    // entry IDs example: entry.123456789
+    const WAITLIST_GOOGLE_FORM = {
+      actionUrl: '',
+      entries: {
+        name: '',
+        email: '',
+        message: ''
+      }
+    };
+
+    const form = document.querySelector('#waitlist-form');
+    const waitlistStatus = document.querySelector('#waitlist-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const submitLabel = submitButton.textContent;
+    const isWaitlistConfigured = Boolean(
+      WAITLIST_GOOGLE_FORM.actionUrl &&
+      WAITLIST_GOOGLE_FORM.entries.name &&
+      WAITLIST_GOOGLE_FORM.entries.email &&
+      WAITLIST_GOOGLE_FORM.entries.message
+    );
+
+    if (!isWaitlistConfigured) {
+      waitlistStatus.classList.add('is-error');
+      waitlistStatus.textContent = 'Waitlist is not connected yet. Add Google Form action URL and entry IDs in the script config.';
+    }
+
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const button = form.querySelector('button');
-      const originalLabel = button.textContent;
-      button.textContent = 'Added to waitlist';
-      button.disabled = true;
-      setTimeout(() => {
-        button.textContent = originalLabel;
-        button.disabled = false;
+      if (!isWaitlistConfigured) {
+        waitlistStatus.classList.add('is-error');
+        waitlistStatus.classList.remove('is-success');
+        waitlistStatus.textContent = 'Submission unavailable: Google Form configuration is missing.';
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+      form.setAttribute('aria-busy', 'true');
+      waitlistStatus.classList.remove('is-error', 'is-success');
+      waitlistStatus.textContent = 'Sending your waitlist request...';
+
+      const fields = new FormData(form);
+      const payload = new URLSearchParams();
+      payload.append(WAITLIST_GOOGLE_FORM.entries.name, String(fields.get('name') || ''));
+      payload.append(WAITLIST_GOOGLE_FORM.entries.email, String(fields.get('email') || ''));
+      payload.append(WAITLIST_GOOGLE_FORM.entries.message, String(fields.get('message') || ''));
+
+      try {
+        await fetch(WAITLIST_GOOGLE_FORM.actionUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: payload.toString()
+        });
+        waitlistStatus.classList.add('is-success');
+        waitlistStatus.textContent = 'Thanks! You have been added to the waitlist.';
         form.reset();
-      }, 1800);
+      } catch (error) {
+        console.warn('Google Forms submission failed.', error);
+        waitlistStatus.classList.add('is-error');
+        waitlistStatus.textContent = 'Submission failed. Please try again in a moment.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = submitLabel;
+        form.removeAttribute('aria-busy');
+      }
     });
 
       const countdownTarget = new Date('2026-12-11T00:00:00');
@@ -1470,7 +1549,7 @@
       if (cableMaterial) cableMaterial.color.set(color);
       accentParts.forEach((material) => material.color.set(color));
       document.querySelectorAll(".fallback-cable").forEach((part) => { part.style.stroke = color; });
-      document.querySelectorAll(".fallback-collar").forEach((part) => { part.style.fill = color; });
+      document.querySelectorAll(".fallback-collar, .fallback-module-accent").forEach((part) => { part.style.fill = color; });
       colorButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
       status.textContent = `${button.dataset.colorway[0].toUpperCase()}${button.dataset.colorway.slice(1)} cable selected`;
     }
@@ -1501,53 +1580,51 @@
       scene.add(rimLight);
 
       const product = new THREE.Group();
-      product.rotation.set(-0.06, -0.28, 0);
+      product.rotation.set(-0.1, -0.24, 0);
       scene.add(product);
 
-      const ceramic = new THREE.MeshPhysicalMaterial({ color: 0xf5f7fa, roughness: 0.2, metalness: 0.04, clearcoat: 0.8, clearcoatRoughness: 0.2 });
-      const dark = new THREE.MeshStandardMaterial({ color: 0x253444, roughness: 0.42, metalness: 0.16 });
-      const metal = new THREE.MeshStandardMaterial({ color: 0xc7d5df, roughness: 0.24, metalness: 0.76 });
-      const screenMat = new THREE.MeshStandardMaterial({ color: 0x18344a, roughness: 0.24, metalness: 0.16, emissive: 0x12425a, emissiveIntensity: 0.55 });
+      const ceramic = new THREE.MeshPhysicalMaterial({ color: 0xf4f7fb, roughness: 0.22, metalness: 0.04, clearcoat: 0.8, clearcoatRoughness: 0.2 });
+      const dark = new THREE.MeshStandardMaterial({ color: 0x27374a, roughness: 0.42, metalness: 0.16 });
+      const metal = new THREE.MeshStandardMaterial({ color: 0xc4d3de, roughness: 0.24, metalness: 0.76 });
+      const moduleShell = new THREE.MeshPhysicalMaterial({ color: 0xe8f0f8, roughness: 0.28, metalness: 0.12, clearcoat: 0.4, clearcoatRoughness: 0.25 });
+      const indicatorMat = new THREE.MeshStandardMaterial({ color: 0x7bffc3, emissive: 0x3fbf83, emissiveIntensity: 1.15, roughness: 0.2, metalness: 0.05 });
       cableMaterial = new THREE.MeshStandardMaterial({ color: 0xe64458, roughness: 0.38, metalness: 0.08 });
 
       function addEarbud(side) {
         const earbud = new THREE.Group();
-        const shell = new THREE.Mesh(new THREE.SphereGeometry(0.32, 32, 24), ceramic);
-        shell.scale.set(1.13, 0.82, 0.88);
-        shell.position.set(0, 0.21, 0);
+        const shell = new THREE.Mesh(new THREE.SphereGeometry(0.28, 28, 22), ceramic);
+        shell.scale.set(1.12, 0.82, 0.86);
+        shell.position.set(0, 0.2, 0);
         earbud.add(shell);
 
-        const stem = new THREE.Mesh(new THREE.CapsuleGeometry(0.078, 0.48, 6, 16), ceramic);
-        stem.position.set(0, -0.29, 0);
-        stem.rotation.z = side * 0.06;
+        const stem = new THREE.Mesh(new THREE.CapsuleGeometry(0.07, 0.45, 6, 16), ceramic);
+        stem.position.set(0, -0.26, 0);
+        stem.rotation.z = side * 0.05;
         earbud.add(stem);
 
-        const speaker = new THREE.Mesh(new THREE.SphereGeometry(0.105, 20, 16), dark);
-        speaker.scale.set(0.62, 0.82, 0.44);
-        speaker.position.set(side * 0.29, 0.19, 0.07);
+        const speaker = new THREE.Mesh(new THREE.SphereGeometry(0.09, 18, 14), dark);
+        speaker.scale.set(0.7, 0.86, 0.45);
+        speaker.position.set(side * 0.24, 0.2, 0.07);
         earbud.add(speaker);
-
-        const grille = new THREE.Mesh(new THREE.CircleGeometry(0.058, 24), metal);
-        grille.position.set(side * 0.32, 0.2, 0.11);
-        grille.rotation.y = side * 0.55;
-        earbud.add(grille);
-
-        const sensor = new THREE.Mesh(new THREE.SphereGeometry(0.035, 16, 12), dark);
-        sensor.position.set(-side * 0.1, 0.34, 0.265);
-        earbud.add(sensor);
 
         const collarMaterial = new THREE.MeshStandardMaterial({ color: 0xe64458, roughness: 0.32, metalness: 0.22 });
         accentParts.push(collarMaterial);
-        const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.105, 0.105, 0.055, 24), collarMaterial);
-        collar.position.set(0, -0.57, 0);
+        const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.05, 24), collarMaterial);
+        collar.position.set(0, -0.53, 0);
         earbud.add(collar);
 
-        const contact = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.058, 0.026, 20), metal);
-        contact.position.set(0, -0.61, 0);
+        const contact = new THREE.Mesh(new THREE.CylinderGeometry(0.054, 0.054, 0.024, 20), metal);
+        contact.position.set(0, -0.58, 0);
         earbud.add(contact);
 
-        earbud.position.set(side * 0.78, 0.67, 0.12);
-        earbud.rotation.z = -side * 0.13;
+        if (side < 0) {
+          const chargingDot = new THREE.Mesh(new THREE.SphereGeometry(0.024, 12, 10), indicatorMat);
+          chargingDot.position.set(0.015, -0.45, 0.095);
+          earbud.add(chargingDot);
+        }
+
+        earbud.position.set(side * 0.86, 0.71, 0.08);
+        earbud.rotation.z = -side * 0.16;
         product.add(earbud);
       }
 
@@ -1557,90 +1634,36 @@
         product.add(cable);
       }
 
-      addCable([[0, -1.82, 0.12], [0, -1.9, 0.12], [0, -1.96, 0.12]]);
-      addCable([[-0.08, -1.96, 0.12], [-0.34, -1.75, 0.1], [-0.78, -1.22, 0.06], [-0.98, -0.82, 0.06], [-0.91, -0.35, 0.1], [-0.78, 0.08, 0.13]]);
-      addCable([[0.08, -1.96, 0.12], [0.34, -1.75, 0.1], [0.78, -1.22, 0.06], [0.98, -0.82, 0.06], [0.91, -0.35, 0.1], [0.78, 0.08, 0.13]]);
+      addCable([[-0.05, -0.03, 0.08], [-0.24, 0.13, 0.08], [-0.56, 0.34, 0.08], [-0.85, 0.63, 0.08]]);
+      addCable([[0.05, -0.03, 0.08], [0.24, 0.13, 0.08], [0.56, 0.34, 0.08], [0.85, 0.63, 0.08]]);
+      addCable([[0, -0.26, 0.08], [0, -0.58, 0.09], [0, -0.92, 0.1], [0, -1.24, 0.11]]);
 
-      const splitter = new THREE.Mesh(new THREE.CapsuleGeometry(0.043, 0.14, 6, 16), cableMaterial);
-      splitter.rotation.z = Math.PI / 2;
-      splitter.position.set(0, -1.96, 0.12);
-      product.add(splitter);
+      const batteryModule = new THREE.Group();
+      const moduleBody = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.34, 0.2), moduleShell);
+      moduleBody.position.set(0, -0.08, 0.08);
+      batteryModule.add(moduleBody);
+      const moduleAccentMaterial = new THREE.MeshStandardMaterial({ color: 0xe64458, roughness: 0.32, metalness: 0.2 });
+      accentParts.push(moduleAccentMaterial);
+      const moduleAccent = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.085, 0.18), moduleAccentMaterial);
+      moduleAccent.position.set(0, -0.08, 0.19);
+      batteryModule.add(moduleAccent);
+      const moduleLed = new THREE.Mesh(new THREE.SphereGeometry(0.03, 14, 12), indicatorMat);
+      moduleLed.position.set(0.12, -0.08, 0.2);
+      batteryModule.add(moduleLed);
+      product.add(batteryModule);
 
-      function roundedRectangle(width, height, radius) {
-        const shape = new THREE.Shape();
-        const x = -width / 2;
-        const y = -height / 2;
-        shape.moveTo(x + radius, y);
-        shape.lineTo(x + width - radius, y);
-        shape.quadraticCurveTo(x + width, y, x + width, y + radius);
-        shape.lineTo(x + width, y + height - radius);
-        shape.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        shape.lineTo(x + radius, y + height);
-        shape.quadraticCurveTo(x, y + height, x, y + height - radius);
-        shape.lineTo(x, y + radius);
-        shape.quadraticCurveTo(x, y, x + radius, y);
-        return shape;
-      }
-
-      const phone = new THREE.Group();
-      const titanium = new THREE.MeshPhysicalMaterial({ color: 0x9aafc0, roughness: 0.24, metalness: 0.68, clearcoat: 0.72, clearcoatRoughness: 0.18 });
-      const phoneBodyGeometry = new THREE.ExtrudeGeometry(roundedRectangle(0.7, 1.16, 0.09), { depth: 0.11, bevelEnabled: true, bevelSegments: 3, bevelSize: 0.008, bevelThickness: 0.01, curveSegments: 8 });
-      phoneBodyGeometry.translate(0, 0, -0.055);
-      const phoneBody = new THREE.Mesh(phoneBodyGeometry, titanium);
-      phoneBody.position.set(0, -1.25, 0);
-      phone.add(phoneBody);
-
-      const cameraBumpGeometry = new THREE.ExtrudeGeometry(roundedRectangle(0.28, 0.29, 0.06), { depth: 0.035, bevelEnabled: true, bevelSegments: 2, bevelSize: 0.006, bevelThickness: 0.006, curveSegments: 8 });
-      cameraBumpGeometry.translate(0, 0, -0.0175);
-      const cameraBump = new THREE.Mesh(cameraBumpGeometry, new THREE.MeshStandardMaterial({ color: 0x748a9e, roughness: 0.3, metalness: 0.45 }));
-      cameraBump.position.set(-0.16, -0.85, 0.075);
-      phone.add(cameraBump);
-      const lensRim = new THREE.MeshStandardMaterial({ color: 0x465b70, roughness: 0.22, metalness: 0.7 });
-      const lensGlass = new THREE.MeshPhysicalMaterial({ color: 0x13283c, roughness: 0.12, metalness: 0.32, clearcoat: 1 });
-      function addCameraLens(x, y) {
-        const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.043, 0.018, 24), lensRim);
-        rim.rotation.x = Math.PI / 2;
-        rim.position.set(x, y, 0.121);
-        phone.add(rim);
-        const glass = new THREE.Mesh(new THREE.CylinderGeometry(0.031, 0.031, 0.02, 24), lensGlass);
-        glass.rotation.x = Math.PI / 2;
-        glass.position.set(x, y, 0.134);
-        phone.add(glass);
-      }
-      addCameraLens(-0.235, -0.77);
-      addCameraLens(-0.105, -0.77);
-      addCameraLens(-0.235, -0.9);
-      const flash = new THREE.Mesh(new THREE.SphereGeometry(0.018, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffe8b3 }));
-      flash.position.set(-0.105, -0.9, 0.12);
-      phone.add(flash);
-
-      const appleMarkShape = new THREE.Shape();
-      appleMarkShape.moveTo(-0.015, 0.11);
-      appleMarkShape.bezierCurveTo(-0.1, 0.2, -0.22, 0.13, -0.2, 0.015);
-      appleMarkShape.bezierCurveTo(-0.19, -0.11, -0.12, -0.19, -0.04, -0.15);
-      appleMarkShape.bezierCurveTo(0.01, -0.12, 0.04, -0.12, 0.09, -0.15);
-      appleMarkShape.bezierCurveTo(0.17, -0.19, 0.22, -0.09, 0.2, 0.015);
-      appleMarkShape.bezierCurveTo(0.18, 0.12, 0.1, 0.19, 0.025, 0.12);
-      appleMarkShape.bezierCurveTo(0.01, 0.11, 0, 0.1, -0.015, 0.11);
-      appleMarkShape.closePath();
-      const appleMark = new THREE.Mesh(new THREE.ShapeGeometry(appleMarkShape), new THREE.MeshBasicMaterial({ color: 0x50677d, side: THREE.DoubleSide }));
-      appleMark.position.set(0, -1.27, 0.08);
-      phone.add(appleMark);
-      const appleLeafShape = new THREE.Shape();
-      appleLeafShape.moveTo(0, 0);
-      appleLeafShape.quadraticCurveTo(0.06, 0.08, 0.12, 0.06);
-      appleLeafShape.quadraticCurveTo(0.1, 0, 0, 0);
-      const appleLeaf = new THREE.Mesh(new THREE.ShapeGeometry(appleLeafShape), new THREE.MeshBasicMaterial({ color: 0x50677d, side: THREE.DoubleSide }));
-      appleLeaf.position.set(0.015, -1.04, 0.081);
-      phone.add(appleLeaf);
-
-      const port = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.028, 0.018), dark);
-      port.position.set(0, -1.81, 0.079);
-      phone.add(port);
-      const plug = new THREE.Mesh(new THREE.BoxGeometry(0.105, 0.045, 0.08), metal);
-      plug.position.set(0, -1.84, 0.14);
-      product.add(plug);
-      product.add(phone);
+      const plugHousing = new THREE.Mesh(new THREE.BoxGeometry(0.21, 0.12, 0.16), metal);
+      plugHousing.position.set(0, -1.33, 0.12);
+      product.add(plugHousing);
+      const plugTip = new THREE.Mesh(new THREE.BoxGeometry(0.115, 0.045, 0.08), dark);
+      plugTip.position.set(0, -1.41, 0.12);
+      product.add(plugTip);
+      const phonePort = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.1, 0.22), new THREE.MeshStandardMaterial({ color: 0x70879c, roughness: 0.32, metalness: 0.52 }));
+      phonePort.position.set(0, -1.52, 0.06);
+      product.add(phonePort);
+      const portCutout = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.024, 0.06), dark);
+      portCutout.position.set(0, -1.52, 0.17);
+      product.add(portCutout);
 
       addEarbud(-1);
       addEarbud(1);
@@ -1698,4 +1721,4 @@
     }
   </script>
 </body>
-</html>"}}]}
+</html>
